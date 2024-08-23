@@ -166,6 +166,7 @@ function deleteQrcode()
 // ================== add qrcode by form ==================
 function addqrcode()
 {
+    $("#errorlist, #errorcomment").hide().html('');
     var qrmanual =  $("#qrValue").val();
     if(qrmanual == '')
     {
