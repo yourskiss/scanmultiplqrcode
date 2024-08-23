@@ -1,0 +1,113 @@
+*{margin:0;padding:0;box-sizing:border-box; }
+:root { scroll-padding: 0; }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0;}
+
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{ outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-height:1; font-family: Arial, Helvetica, sans-serif;   }
+
+/* ################### loaderbar ################### */
+.loaderbar {display: none;position: fixed;left: 0;top: 0;z-index: 9;width: 100%;height: 100%;margin: 0;padding: 0;background: #000000;  text-align: center;}
+.loaderbar div { position: absolute; left: 50%;top: 50%; transform: translate(-50%, -50%); width: 260px; height: auto; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+.loaderbar div aside { border:7px solid #fff; border-radius: 50%; border-top:7px solid #afcdaf;width:60px;height:60px;-webkit-animation: spin 2s linear infinite; animation: spin 2s linear infinite; }
+.loaderbar div h2 {  width: 100%; float: left; margin: 2rem 0 0 0; padding: 0; text-align: center; color:#fff; line-height: 1; font-size:18px; font-weight:normal;  text-transform: none; } 
+@-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); }  100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+
+
+
+/* ################### alertpopup ################### */
+.alertpopup { display: none; z-index:8; position: fixed; left: 50%; top: 0; transform: translateX(-50%); height: 100%; width: 100%; max-width: 1024px; float: left;  background-color: #000;  }
+.alertpopup section { display: block; z-index:9;  position:absolute; left:50%; bottom:2rem; transform: translateX(-50%); width:94%; max-width: 350px; height: auto; float: left; background-color: #fff; overflow:visible; border-radius:10px; margin:0 auto; padding:2rem; box-sizing: border-box; }
+.alertpopup h2 {  width: 100%; float: left; margin:0; padding: 0 0 1rem 0;   color:#383C3D; font-size: 18px; font-weight: 500;line-height: 1;  } 
+.alertpopup p {  width:100%; float: left; margin:0 0; padding:0 0 1.5rem 0;  color:#383C3D; font-size: 16px; font-weight: 500;line-height: 1.3;  } 
+.alertpopup h5 {  width: 100%; float: left; margin:0; padding:0 0 0 0;  text-align: center; }
+.alertpopup .alertclose { display: inline-block; width: auto; margin: 0 1rem; padding:1rem 2rem; background:#afcdaf;  font-weight: normal; line-height: 1; font-size: 16px;  color:#000;  border:none; transition: all 0.5s ease-out;  border-radius:0;  cursor: pointer;  text-transform: none; }
+.alertpopup .alertclose:hover {  background:#383C3D;  color:#fff; transition: all 0.5s ease-in;  }
+
+ 
+
+/* ################### qr code reader ################### */
+.scanqrcodecontainer  { z-index: 2; position: fixed; top: 0; left: 0; display: none; width: 100%; height: 100%; float: left; margin:0; padding:0; background: #000; }
+.qrreaderhead { position: relative; z-index: 9; width: 100%; float: left; margin:1rem 0 1rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: normal;color: #000; font-size: 20px;  }
+.qrreaderclose { z-index: 4; position: absolute; right: -7px; top: -7px; color: #000;z-index: 3;border: solid 1px #AFCDAF;background: #AFCDAF;text-align: center;width: 27px;height: 27px;line-height: 27px; font-size: 16px;border-radius: 50%; cursor: pointer; }
+.qrreaderclose:hover { color: #fff; }
+.qrreadersection { z-index:3; position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%); width: 95%; max-width: 480px; max-height: 90%;  }
+.myqrreader { background: #fff; padding: 1rem !important; border:0 !important; border-radius: 8px;}
+.myqrreader img[alt="Info icon"] { display: none;}
+.myqrreader img[alt="Camera based scan"] {width: 100px !important;height: 100px !important;}
+.myqrreader button { padding: 10px 20px;border: 1px solid #b2b2b2;outline: none;border-radius: 0.25em;color: white;font-size: 15px;cursor: pointer;margin-top: 15px; margin-bottom: 10px; background-color: #AFCDAF; transition: 0.3s background-color; }
+.myqrreader button:hover {  background-color: #008000;}
+.myqrreader video {    width: 100% !important;    border: 1px solid #b2b2b2 !important;    border-radius: 0.25em;}
+#html5-qrcode-anchor-scan-type-change {  text-decoration: none !important;    color: #1d9bf0;}
+
+
+
+
+.rf_container { display:block; width: 95%; max-width: 1000px; float: none; clear: both; margin: 0 auto;  padding: 2rem 0; }
+.rf_head { width: 100%; float: left; margin:1.5rem 0; text-align: center; text-transform: none;  font-weight: bold; color:#F5F0EB; font-size:30px;   }
+.rf_field { position: relative; width: 100%; float: left;text-align: center; margin-top:1.5rem;}
+.rf_info { width: 100%;float: left;text-align: left;text-transform: none; font-weight: 500; color: #fff;font-size: 18px;  margin-top:0.8rem; }
+.rf_text { margin:0; padding:0 0 0.8rem 0; width: 100%; float: left; text-align: left; text-transform: none; font-weight: 500;color: rgba(175, 205, 175, 0.6); font-size: 18px; line-height: 1.2;  }
+.rf_text.rf_text_center { margin: 1rem 0 0 0; text-align: center; }
+.rf_input {  float: left;  width: 100%;  padding: 0.5rem 1rem;  border: 0; border: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235);  font-size: 24px;  box-shadow:none; box-sizing: border-box; }
+.rf_error { display: none; margin-top:0.8rem; padding: 0; float: left; width: 100%; text-align: left; font-weight: 500; color: #f30; font-size: 16px;}
+.rf_error.rf_error_center { text-align: center; }
+.rf_submit { margin:2rem 0;  float: left;  width: 100%;  text-align: center;}
+.rf_button { width: auto; display: inline-block;  margin:0 1rem;  padding:1rem 2rem; box-sizing: border-box; text-align: center;  background:#F5F0EB;  font-weight: 700;  font-size: 18px;  color:#191919;  border: solid 2px #414141; transition: all 0.5s ease-out;  border-radius: 0;  text-decoration: none;   cursor: pointer; outline: none; text-transform: uppercase; }
+.rf_button:hover { background: #AFCDAF;  color: #191919;   transition: all 0.5s ease-in; }
+ 
+
+.rf_list { float: left;  width: 100%; min-height: 50px;  padding: 0.5rem 1rem;  border: 0; border: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235);  font-size: 24px;  box-shadow:none; box-sizing: border-box; }
+.rf_list li { list-style: none; display: block; float: left; width: 100%; margin: 0; padding:0.5rem 0; border-bottom: solid 1px #535353; display: flex; justify-content: space-between; align-items: flex-start; font-weight: normal;  font-size: 18px;  color:#fff;  }
+.rf_list li:last-child { border-bottom:0; }
+.rf_list li span { float: left; width:calc(100% - 40px); text-align: left; margin: 0; padding: 0;   }
+.rf_list li b { float: right; width:40px; text-align: right; margin: 0; padding: 0; font-weight: bold; font-size: 22px; color: #AFCDAF;  cursor: pointer;; transition: all 0.5s ease-out;  }
+.rf_list li b:hover { color: #fff;  transition: all 0.5s ease-in;  }
+
+
+.rf_topfield { margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+
+.rf_qrcodescan { width: 30%; float: left; margin:0; padding:0 3rem 0 0; }
+.rf_qrcodescan img { max-width: 75px; border: solid 2px #F5F0EB; padding: 5px; cursor: pointer; filter: grayscale(0); transition: all 0.5s ease-in; }
+.rf_qrcodescan img:hover { filter: grayscale(1);  transition: all 0.5s ease-out; }
+
+.rf_qrcodeOr { width:35px;  float: left; margin:0; padding:0; display: flex; justify-content: center; align-items: center; flex-direction: column;  }
+.rf_qrcodeOr span  { width:35px; height: 35px;  line-height: 35px; border-radius: 50%; margin: 0; padding: 0; border: 0; background-color: #afcdaf; color:#fff; text-align: center; font-weight: 500; font-size:16px;   }
+.rf_qrcodeOr:after, .rf_qrcodeOr:before { content: ''; width:2px; height:25px; background-color: #afcdaf;  line-height: 1; font-size: 0; margin: 0; padding: 0; border: 0; }
+ 
+
+.rf_qrfield { width: calc(70% - 35px); float: left; margin:0; padding:0 0 0 3rem;   }
+.rf_qrfield .rf_input { margin-bottom: 1rem;   }
+.rf_qrfield .rf_button {  border-color:#F5F0EB;  }
+
+.qrcodemanual { width: 100%; float: left; margin:3rem 0 1rem 0; padding:0;  }
+.qrcodemanuallyHeading {  width: 100%; float: left; margin:0 0 1rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: normal;color: #191919; font-size: 18px; }
+.qrcodemanuallyError { display: none; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center; font-weight: 500; color: #F30; font-size:16px;   }
+.qrcodemanuallyForm {  width: 100%; float: left; margin:0; padding:0; text-align: center; display: flex; justify-content: center; align-items: center; }
+.qrcodemanuallyInput {  width: 300px;  padding:1rem; margin: 0; border: 0; border: solid 2px #F5F0EB;  outline: none;  background:#fff;  border-radius: 0;  text-align: left; font-weight: 500;  color:#000;  font-size:18px;  box-shadow:none; box-sizing: border-box; }
+.qrcodemanuallyButton { width: 120px; display: inline-block;  margin: 0;  padding:1rem; box-sizing: border-box; text-align: center;  background:#AFCDAF;  font-weight: 700;  font-size: 18px;  color:#191919;  border: solid 2px #AFCDAF; transition: all 0.5s ease-out;  border-radius: 0;  text-decoration: none;   cursor: pointer; outline: none; text-transform: uppercase; }
+.qrcodemanuallyButton:hover { background: #191919;  color: #fff;   transition: all 0.5s ease-in; }
+
+
+
+
+
+@media only screen and (min-device-width:500px) and (max-device-width:1000px) and (orientation:landscape)
+{
+/* ################### qr code reader ################### */
+.scanqrcodecontainer  { overflow: hidden; overflow-y: scroll; }
+ 
+
+} 
+
+
+
+
+
+@media only screen and (max-width:479px)
+{
+
+}

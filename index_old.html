@@ -1,0 +1,117 @@
+<!-- Index.html file -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code Scanner / Reader</title>
+
+
+
+<style type="text/css">
+
+    
+/* ################### qr code reader ################### */
+.scanqrcodecontainer  { width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center; }
+.qrreaderhead {  width: 100%; float: left; margin:0 0 1rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: normal;color: #191919; font-size: 26px;  }
+.qrreadersection { width:95%; max-width:600px; margin:0 auto; float:none; display:inline-block; }
+.myqrreader { padding: 20px !important; border: 1.5px solid #b2b2b2 !important; border-radius: 8px;}
+.myqrreader img[alt="Info icon"] { display: none;}
+.myqrreader img[alt="Camera based scan"] {width: 100px !important;height: 100px !important;}
+.myqrreader button { padding: 10px 20px;border: 1px solid #b2b2b2;outline: none;border-radius: 0.25em;color: white;font-size: 15px;cursor: pointer;margin-top: 15px; margin-bottom: 10px; background-color: #AFCDAF; transition: 0.3s background-color; }
+.myqrreader button:hover {  background-color: #008000;}
+.myqrreader video {    width: 100% !important;    border: 1px solid #b2b2b2 !important;    border-radius: 0.25em;}
+#html5-qrcode-anchor-scan-type-change {  text-decoration: none !important;    color: #1d9bf0;}
+.qrcodeOr { width: 100%; float: left; margin:1.5rem 0; padding:0; display: flex; justify-content: center; align-items: center; font-weight: 500; color: #fff; font-size:16px; line-height:24px; }
+.qrcodeOr span  { width:35px; height: 35px;  line-height: 35px; border-radius: 50%; margin: 0; padding: 0; border: 0; background-color: #afcdaf; color:#fff; text-align: center; font-weight: 500; font-size:18px;   }
+.qrcodeOr:after, .qrcodeOr:before { content: ''; width:150px; height: 2px; background-color: #afcdaf;  line-height: 1; font-size: 0; margin: 0; padding: 0; border: 0; }
+.qrcodemanual { width: 100%; float: left; margin:3rem 0 1rem 0; padding:0;  }
+.qrcodemanuallyHeading {  width: 100%; float: left; margin:0 0 1rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: normal;color: #191919; font-size: 18px; }
+.qrcodemanuallyError { display: none; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center; font-weight: 500; color: #F30; font-size:16px;   }
+.qrcodemanuallyForm {  width: 100%; float: left; margin:0; padding:0; text-align: center; display: flex; justify-content: center; align-items: center; }
+.qrcodemanuallyInput {  width: 300px;  padding:1rem; margin: 0; border: 0; border: solid 2px #F5F0EB;  outline: none;  background:#fff;  border-radius: 0;  text-align: left; font-weight: 500;  color:#000;  font-size:18px;  box-shadow:none; box-sizing: border-box; }
+.qrcodemanuallyButton { width: 120px; display: inline-block;  margin: 0;  padding:1rem; box-sizing: border-box; text-align: center;  background:#AFCDAF;  font-weight: 700;  font-size: 18px;  color:#191919;  border: solid 2px #AFCDAF; transition: all 0.5s ease-out;  border-radius: 0;  text-decoration: none;   cursor: pointer; outline: none; text-transform: uppercase; }
+.qrcodemanuallyButton:hover { background: #191919;  color: #fff;   transition: all 0.5s ease-in; }
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+
+    <div class="scanqrcodecontainer">
+        <div class="qrreaderhead">Scan QR Code</div>
+        <div class="qrreadersection">
+            <div class="myqrreader" id="my-qr-reader"></div>
+        </div>
+        <div class="qrcodeOr"><span>OR</span></div>
+        <div className="qrcodemanual">   
+            <div class="qrcodemanuallyHeading">Enter QR Code Manually</div>
+            <div class="qrcodemanuallyForm">
+                <input class="qrcodemanuallyInput" type='text' id='manualentercoponecode' autoComplete="off" maxLength='10' placeholder='Enter QR Code' />
+                <span class="qrcodemanuallyButton" onclick="handleQrCodeManually();">Submit</button>
+            </div>
+            <div class="qrcodemanuallyError" id="qrcodemanuallyError"></div>
+        </div>
+    </div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script>
+function domReady(fn) {
+    if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+    ) {
+        setTimeout(fn, 1000);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}
+
+domReady(function () {
+    // If found you qr code
+    function onScanSuccess(decodeText, decodeResult) {
+        alert("You Qr is : " + decodeText, decodeResult);
+    }
+    let htmlscanner = new Html5QrcodeScanner(
+        "my-qr-reader",
+        { fps: 10, qrbos: 250 }
+    );
+    htmlscanner.render(onScanSuccess);
+});
+
+
+function handleQrCodeManually()
+{
+    var qrmanual =  $("#manualentercoponecode").val();
+    if(qrmanual == '')
+    {
+        $("#qrcodemanuallyError").show().html('Please enter  QR Code');
+        return false;
+    }
+    else if(qrmanual.length != 6)
+    {
+        $("#qrcodemanuallyError").show().html('Invalide QR Code');
+        return false;
+    }
+    else
+    {
+        $("#qrcodemanuallyError").hide().html('');
+        return true;
+    }
+}
+    </script>
+</body>
+
+</html>

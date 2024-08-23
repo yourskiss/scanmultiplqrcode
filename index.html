@@ -1,0 +1,322 @@
+<!-- Index.html file -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code Scanner / Reader</title>
+    <link href="style.css" rel="stylesheet" type="text/css" async="async" />
+
+   
+</head>
+
+<body>
+
+    <div class="rf_container">
+        <div class="rf_head">QR Code Deactivation</div>
+        <div class="rf_field rf_topfield">
+            <aside class="rf_qrcodescan">
+                <span class="rf_text rf_text_center">Scan QR Code</span>
+                <img onclick="showhideQrcode('show');" alt="qrscanner" src="data:image/png;base64,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" />
+            </aside>
+            <aside class="rf_qrcodeOr">
+                <span>OR</span>
+            </aside>
+            <aside class="rf_qrfield">
+                <span class="rf_text rf_text_center">Qr Code Enter Manually</span>
+                <input class="rf_input" type="text" id="qrValue" autoComplete="off" maxLength="6" onkeypress="return isAlphaNumericOnly(event)" />
+                <span class="rf_button" onclick="addqrcode();">Add QR</span>
+                <span class="rf_error rf_error_center" id="qrValError"></span>
+            </aside>
+        </div>
+        <div class="rf_field">
+            <span class="rf_text">QR Codes</span>
+            <ul class="rf_list" id="qrlist">
+                <!-- <li><span>aaaa</span> <b>&#935;</b></li> -->
+            </ul>
+            <span class="rf_info"><b id="qrcodecount">0</b> QR Code Scanned</span>
+        </div>
+        <div class="rf_field">
+            <span class="rf_text">Notes:</span>
+            <input class="rf_input" type="text" id="comments" autoComplete="off" maxLength="500" onkeypress="return isAlphaNumericWithOther(event)" />
+            <span class="rf_info">Any Comments (max. 500 Characters)</span>
+            <span class="rf_error" id="errorcomment"></span>
+        </div>
+        <div class="rf_submit">
+            <span class="rf_button" onclick="SubmitQrcode();">Submit</span>
+            <span class="rf_button" onclick="deleteQrcode();">Clear All</span>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- scanqrcodecontainer start -->
+    <div class="scanqrcodecontainer" id="scanqrcodecontainer">
+        <div class="qrreadersection">
+            <div class="qrreaderclose" onclick="showhideQrcode('hide');">&#935;</div>
+            <div class="myqrreader" id="my-qr-reader"></div>
+        </div>     
+    </div>
+    <!-- scanqrcodecontainer end -->
+
+
+    <!-- alertpopup start -->
+    <div class="alertpopup" id="successmessage">
+        <section>
+            <h2>Successfully Scanned, <b id="successCount"></b> QR Code -</h2>
+            <p id="successList"></p>
+            <h5>
+                <span class="alertclose" onclick="showhideAlert('hide');">Close</span>
+            </h5>
+        </section>     
+    </div>
+    <!-- alertpopup end -->
+
+
+    <!-- loaderbar start -->
+    <div class="loaderbar" id="loader">
+        <div>
+            <aside></aside>
+            <h2>Loading...</h2>
+        </div>     
+    </div>
+    <!-- loaderbar end -->
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script>
+
+
+// ================== set qrcode ===> from sessionstorage  ==================
+function setQrcode(val)
+{
+    let storedValues = JSON.parse(sessionStorage.getItem('scannedqrcode')) || [];
+    let newstoredValues = storedValues.concat(val);
+    sessionStorage.setItem('scannedqrcode', JSON.stringify(newstoredValues));
+    $("#qrValue").val('');
+    showQrcode();
+}
+
+// ==================  get qrcode ===> from sessionstorage  ==================
+function getQrcode()
+{
+    return JSON.parse(sessionStorage.getItem('scannedqrcode'));
+}
+
+// ================== show qrcode  ===> from sessionstorage  ==================
+function showQrcode()
+{
+    showhideLoader('show');
+    setTimeout(function(){showhideLoader('hide');},1000);
+
+    $("#qrlist, #successList").html('');
+    $("#qrcodecount, #successCount").text(0);
+    let array = getQrcode();
+    $.each(array, function(index,value) {
+        $("#qrlist").append(`<li><span>${value}</span> <b onclick="removeQrcode('${value}')">&#935;</b></li>`);
+    });
+    $.each(array, function(index,value) {
+        $("#successList").append(`<span>${value}</span>, `);
+    });
+    if(array == null || array == undefined || array == '')
+    {
+        $("#qrcodecount, #successCount").text(0);
+    }
+    else 
+    {
+        $("#qrcodecount, #successCount").text(array.length);
+    }
+    
+}
+showQrcode();
+
+ 
+
+// ==================  delete 1 qrcode ===> from sessionstorage ==================
+function removeQrcode(itemToRemove)
+{
+    let array = getQrcode();
+    array = $.grep(array, function(value) {
+        return value !== itemToRemove;
+    });
+    sessionStorage.setItem('scannedqrcode', [JSON.stringify(array)]);
+    showQrcode();
+}
+
+
+// ================== delete all qrcode ===> from sessionstorage ==================
+function deleteQrcode()
+{
+    sessionStorage.removeItem('scannedqrcode');
+    showQrcode();
+    $("#comments").val('');
+    $("#qrValue").val('');
+}
+
+
+
+// ================== add qrcode by form ==================
+function addqrcode()
+{
+    var qrmanual =  $("#qrValue").val();
+    if(qrmanual == '')
+    {
+        $("#qrValError").show().html('Please enter  QR Code');
+        return false;
+    }
+    else if(qrmanual.length != 6)
+    {
+        $("#qrValError").show().html('Please enter valid QR Code');
+        return false;
+    }
+    else
+    {
+        $("#qrValError").hide().html('');
+        setQrcode(qrmanual);
+        return true;
+    }
+}
+
+// ================== submit all qrcode  ==================
+function SubmitQrcode()
+{
+    var qrcodevalue = getQrcode();
+    var comments =  $("#comments").val();
+    if(qrcodevalue == null || qrcodevalue == undefined || qrcodevalue == '')
+    {
+        $("#errorcomment").show().html('Please add  QR Code');
+        return false;
+    }
+    else if(comments == '')
+    {
+        $("#errorcomment").show().html('Please enter comments');
+        return false;
+    }
+    else if(comments.length > 500)
+    {
+        $("#errorcomment").show().html('Please enter max. 500 characters');
+        return false;
+    }
+    else
+    {
+        $("#errorcomment").hide().html('');
+        showhideAlert('show');
+        sessionStorage.removeItem('scannedqrcode'); // remove session
+        $("#comments").val('');
+        $("#qrValue").val('');
+        return true;
+    }
+}
+
+
+    
+
+
+// ================== showhideAlert show hide ==================
+function showhideAlert(val)
+{
+    if(val == "show")
+    {
+        $("#successmessage").fadeIn(300);
+    }
+    else if(val == "hide")
+    {
+        $("#successmessage").fadeOut(300);
+        location.reload(true); // page reload
+    }
+    else 
+    {
+        // notting
+    }
+}
+
+// ================== show-hide qrcode popup ==================
+function showhideQrcode(val)
+{
+    $("#qrValError").hide().html('');
+    if(val == "show")
+    {
+        $("#scanqrcodecontainer").fadeIn(300);
+    }
+    else if(val == "hide")
+    {
+        $("#scanqrcodecontainer").fadeOut(300);
+    }
+    else 
+    {
+        // notting
+    }
+}
+
+
+
+// ================== loader show hide ==================
+function showhideLoader(val)
+{
+    if(val == "show")
+    {
+        $("#loader").fadeIn(300);
+    }
+    else if(val == "hide")
+    {
+        $("#loader").fadeOut(300);
+    }
+    else 
+    {
+        // notting
+    }
+}
+
+
+function domReady(fn) {
+    if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+    ) {
+        setTimeout(fn, 1000);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}
+domReady(function () {
+    // If found you qr code
+    function onScanSuccess(decodeText, decodeResult) { 
+        alert("You Qr is : " + decodeText, decodeResult);
+    }
+    let htmlscanner = new Html5QrcodeScanner("my-qr-reader",{ fps: 10, qrbos: 250 });
+    htmlscanner.render(onScanSuccess);
+});
+
+
+
+    // only allowed ====== a-z and 0-9 
+    function isAlphaNumericOnly(e) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(strigChar)) {
+            return true;
+        }
+        return false
+    }
+ 
+    // only allowed ====== a-z and 0-9 and .,-
+    function isAlphaNumericWithOther(e) {
+        var regex = new RegExp("^[a-zA-Z0-9.,- ]+$");
+        var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(strigChar)) {
+            return true;
+        }
+        return false
+    }
+    // only Letter validation === end
+    </script>
+</body>
+
+</html>
