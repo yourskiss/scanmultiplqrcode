@@ -37,6 +37,7 @@
                 <!-- <li><span>aaaa</span> <b>&#935;</b></li> -->
             </ul>
             <span class="rf_info"><b id="qrcodecount">0</b> QR Code Scanned</span>
+            <span class="rf_error" id="errorlist"></span>
         </div>
         <div class="rf_field">
             <span class="rf_text">Notes:</span>
@@ -191,7 +192,7 @@ function SubmitQrcode()
     var comments =  $("#comments").val();
     if(qrcodevalue == null || qrcodevalue == undefined || qrcodevalue == '')
     {
-        $("#errorcomment").show().html('Please add  QR Code');
+        $("#errorlist").show().html('Please add  QR Code');
         return false;
     }
     else if(comments == '')
@@ -206,7 +207,7 @@ function SubmitQrcode()
     }
     else
     {
-        $("#errorcomment").hide().html('');
+        $("#errorlist, #errorcomment").hide().html('');
         showhideAlert('show');
         sessionStorage.removeItem('scannedqrcode'); // remove session
         $("#comments").val('');
