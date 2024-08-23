@@ -155,10 +155,10 @@ function removeQrcode(itemToRemove)
 // ================== delete all qrcode ===> from sessionstorage ==================
 function deleteQrcode()
 {
+    $("#qrValue, #comments").val('');
+    $("#qrValError, #errorlist, #errorcomment").hide().html('');
     sessionStorage.removeItem('scannedqrcode');
     showQrcode();
-    $("#comments").val('');
-    $("#qrValue").val('');
 }
 
 
@@ -189,6 +189,7 @@ function addqrcode()
 // ================== submit all qrcode  ==================
 function SubmitQrcode()
 {
+    $("#qrValError").hide().html('');
     var qrcodevalue = getQrcode();
     var comments =  $("#comments").val();
     if(qrcodevalue == null || qrcodevalue == undefined || qrcodevalue == '')
@@ -208,11 +209,10 @@ function SubmitQrcode()
     }
     else
     {
-        $("#errorlist, #errorcomment").hide().html('');
+        $("#qrValue, #comments").val('');
+        $("#qrValError, #errorlist, #errorcomment").hide().html('');
         showhideAlert('show');
         sessionStorage.removeItem('scannedqrcode'); // remove session
-        $("#comments").val('');
-        $("#qrValue").val('');
         return true;
     }
 }
