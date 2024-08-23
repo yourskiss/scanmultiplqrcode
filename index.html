@@ -296,15 +296,16 @@ domReady(function () {
             {
                 const couponvalue = sdURL[1].split("=");
                 setQrcode(couponvalue[1]);
-                showhideQrcode('hide');
-                showhideLoader('hide');
+              //  showhideQrcode('hide');
+              //  showhideLoader('hide');
                 alert("Successfully scan qr code.");
+                setTimeout(function(){ location.reload(true); },2000);
             }
             else
             {
                 alert("Please scan qr code with kerakoll app.");
-                showhideLoader('hide');
-                setTimeout(function(){ location.reload(); },2000);
+              //  showhideLoader('hide');
+                setTimeout(function(){ location.reload(true); },2000);
             }
     }
     let htmlscanner = new Html5QrcodeScanner("my-qr-reader",{ fps: 10, qrbos: 250 });
