@@ -290,7 +290,22 @@ function domReady(fn) {
 domReady(function () {
     // If found you qr code
     function onScanSuccess(decodeText, decodeResult) { 
-        alert("You Qr is : " + decodeText, decodeResult);
+        showhideLoader('show');
+        const sdURL = decodeText.split("?");
+          if(sdURL[0] === 'https://testclub.kerakoll.com/' || sdURL[0] === 'https://club.kerakoll.com/')
+            {
+                const couponvalue = sdURL[1].split("=");
+                setQrcode(couponvalue[1]);
+                showhideQrcode('hide');
+                showhideLoader('hide');
+                alert("Successfully scan qr code.");
+            }
+            else
+            {
+                alert("Please scan qr code with kerakoll app.");
+                showhideLoader('hide');
+                setTimeout(function(){ location.reload(); },2000);
+            }
     }
     let htmlscanner = new Html5QrcodeScanner("my-qr-reader",{ fps: 10, qrbos: 250 });
     htmlscanner.render(onScanSuccess);
