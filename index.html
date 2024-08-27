@@ -178,7 +178,8 @@ function addqrcode()
         $("#qrValError").show().html('Please enter valid QR Code');
         return false;
     }
-    else if(getArrayFromSS.includes(qrmanual))
+  //  else if(getArrayFromSS.includes(qrmanual))
+    else if(getArrayFromSS.indexOf(qrmanual)  != -1)
     {
         $("#qrValError").show().html('QR Code already added.');
         $("#qrValue").val('');
@@ -304,7 +305,8 @@ domReady(function () {
           if(sdURL[0] === 'https://testclub.kerakoll.com/' || sdURL[0] === 'https://club.kerakoll.com/')
             {
                 const couponvalue = sdURL[1].split("=");
-                if(getValFromSS.includes(couponvalue[1]))
+               // if(getValFromSS.includes(couponvalue[1]))
+                if(getValFromSS.indexOf(couponvalue[1])  != -1)
                 {
                     alert("QR Code already added.");
                     showhideLoader('hide');
