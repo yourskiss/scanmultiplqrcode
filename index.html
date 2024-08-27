@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+<div class="rf_main">
     <div class="rf_container">
         <div class="rf_head">QR Code Deactivation</div>
         <div class="rf_field rf_topfield">
@@ -50,7 +50,7 @@
             <span class="rf_button" onclick="deleteQrcode();">Clear All</span>
         </div>
     </div>
-
+</div>
 
 
 
@@ -68,7 +68,7 @@
     <!-- alertpopup start -->
     <div class="alertpopup" id="successmessage">
         <section>
-            <h2>Successfully Scanned, <b id="successCount"></b> QR Code -</h2>
+            <h2>Successfully Scanned <b id="successCount"></b> QR Code -</h2>
             <p id="successList"></p>
             <h5>
                 <span class="alertclose" onclick="showhideAlert('hide');">Close</span>
@@ -162,11 +162,11 @@ function deleteQrcode()
 }
 
 
-
 // ================== add qrcode by form ==================
 function addqrcode()
 {
     $("#errorlist, #errorcomment").hide().html('');
+    var getArrayFromSS = getQrcode();
     var qrmanual =  $("#qrValue").val();
     if(qrmanual == '')
     {
@@ -176,6 +176,12 @@ function addqrcode()
     else if(qrmanual.length != 6)
     {
         $("#qrValError").show().html('Please enter valid QR Code');
+        return false;
+    }
+    else if(getArrayFromSS.includes(qrmanual))
+    {
+        $("#qrValError").show().html('QR Code already added.');
+        $("#qrValue").val('');
         return false;
     }
     else
@@ -287,24 +293,32 @@ function domReady(fn) {
         document.addEventListener("DOMContentLoaded", fn);
     }
 }
+
+ 
 domReady(function () {
     // If found you qr code
     function onScanSuccess(decodeText, decodeResult) { 
         showhideLoader('show');
+        var getValFromSS = getQrcode();
         const sdURL = decodeText.split("?");
           if(sdURL[0] === 'https://testclub.kerakoll.com/' || sdURL[0] === 'https://club.kerakoll.com/')
             {
                 const couponvalue = sdURL[1].split("=");
-                setQrcode(couponvalue[1]);
-              //  showhideQrcode('hide');
-              //  showhideLoader('hide');
-                alert("Successfully scan qr code.");
-                setTimeout(function(){ location.reload(true); },2000);
+                if(getValFromSS.includes(couponvalue[1]))
+                {
+                    alert("QR Code already added.");
+                    showhideLoader('hide');
+                }
+                else 
+                {
+                    setQrcode(couponvalue[1]);
+                    alert("QR Code scan Successfully.");
+                    setTimeout(function(){ location.reload(true); },1000);
+                }
             }
             else
             {
                 alert("Please scan qr code with kerakoll app.");
-              //  showhideLoader('hide');
                 setTimeout(function(){ location.reload(true); },2000);
             }
     }

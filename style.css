@@ -8,7 +8,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-height:1; font-family: Arial, Helvetica, sans-serif;   }
 
 /* ################### loaderbar ################### */
-.loaderbar {display: none;position: fixed;left: 0;top: 0;z-index: 9;width: 100%;height: 100%;margin: 0;padding: 0;background: #000000;  text-align: center;}
+.loaderbar {display: none;position: fixed;left: 0;top: 0;z-index: 9;width: 100%;height: 100%;float: left;margin: 0;padding: 0;background: #000000;  text-align: center;}
 .loaderbar div { position: absolute; left: 50%;top: 50%; transform: translate(-50%, -50%); width: 260px; height: auto; display: flex; justify-content: center; align-items: center; flex-direction: column; }
 .loaderbar div aside { border:7px solid #fff; border-radius: 50%; border-top:7px solid #afcdaf;width:60px;height:60px;-webkit-animation: spin 2s linear infinite; animation: spin 2s linear infinite; }
 .loaderbar div h2 {  width: 100%; float: left; margin: 2rem 0 0 0; padding: 0; text-align: center; color:#fff; line-height: 1; font-size:18px; font-weight:normal;  text-transform: none; } 
@@ -19,8 +19,8 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 
 
 /* ################### alertpopup ################### */
-.alertpopup { display: none; z-index:8; position: fixed; left: 50%; top: 0; transform: translateX(-50%); height: 100%; width: 100%; max-width: 1024px; float: left;  background-color: #000;  }
-.alertpopup section { display: block; z-index:9;  position:absolute; left:50%; bottom:2rem; transform: translateX(-50%); width:94%; max-width: 350px; height: auto; float: left; background-color: #fff; overflow:visible; border-radius:10px; margin:0 auto; padding:2rem; box-sizing: border-box; }
+.alertpopup { display: none; z-index:8; position: fixed; left: 0; top: 0;  height: 100%; width: 100%; float: left; margin: 0;padding: 0; background-color: #000;  }
+.alertpopup section { display: block; z-index:9;  position:absolute; left:50%; top:50%; transform: translate(-50%, -50%); width:94%; max-width: 350px; height: auto; float: left; background-color: #fff; overflow:visible; border-radius:10px; margin:0 auto; padding:2rem; box-sizing: border-box; }
 .alertpopup h2 {  width: 100%; float: left; margin:0; padding: 0 0 1rem 0;   color:#383C3D; font-size: 18px; font-weight: 500;line-height: 1;  } 
 .alertpopup p {  width:100%; float: left; margin:0 0; padding:0 0 1.5rem 0;  color:#383C3D; font-size: 16px; font-weight: 500;line-height: 1.3;  } 
 .alertpopup h5 {  width: 100%; float: left; margin:0; padding:0 0 0 0;  text-align: center; }
@@ -44,9 +44,9 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 #html5-qrcode-anchor-scan-type-change {  text-decoration: none !important;    color: #1d9bf0;}
 
 
-
-
-.rf_container { display:block; width: 95%; max-width: 1000px; float: none; clear: both; margin: 0 auto;  padding: 2rem 0; }
+/* ################### rf ################### */
+.rf_main { display:flex; justify-content: center; align-items: center; width: 100%;  float: left; clear: both; margin: 0;  padding: 2rem 0; }
+.rf_container { display:block; width: 95%; max-width: 1000px; float: none; clear: both; margin: 0 auto;  padding: 0; }
 .rf_head { width: 100%; float: left; margin:1.5rem 0; text-align: center; text-transform: none;  font-weight: bold; color:#F5F0EB; font-size:30px;   }
 .rf_field { position: relative; width: 100%; float: left;text-align: center; margin-top:1.5rem;}
 .rf_info { width: 100%;float: left;text-align: left;text-transform: none; font-weight: 500; color: #fff;font-size: 18px;  margin-top:0.8rem; }
@@ -59,7 +59,6 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 .rf_button { width: auto; display: inline-block;  margin:0 1rem;  padding:1rem 2rem; box-sizing: border-box; text-align: center;  background:#F5F0EB;  font-weight: 700;  font-size: 18px;  color:#191919;  border: solid 2px #414141; transition: all 0.5s ease-out;  border-radius: 0;  text-decoration: none;   cursor: pointer; outline: none; text-transform: uppercase; }
 .rf_button:hover { background: #AFCDAF;  color: #191919;   transition: all 0.5s ease-in; }
  
-
 .rf_list { float: left;  width: 100%; min-height: 100px;  padding: 0.5rem 1rem;  border: 0; border: solid 2px #F5F0EB; outline: none;  background:transparent;  border-radius: 0;  text-align: left; font-weight: 500;  color: rgba(245, 240, 235);  font-size: 24px;  box-shadow:none; box-sizing: border-box; }
 .rf_list li { list-style: none; display: block; float: left; width: 100%; margin: 0; padding:0.5rem 0; border-bottom: solid 1px #535353; display: flex; justify-content: space-between; align-items: flex-start; font-weight: normal;  font-size: 18px;  color:#fff;  }
 .rf_list li:last-child { border-bottom:0; }
@@ -67,29 +66,16 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 .rf_list li b { float: right; width:40px; text-align: right; margin: 0; padding: 0; font-weight: bold; font-size: 22px; color: #AFCDAF;  cursor: pointer;; transition: all 0.5s ease-out;  }
 .rf_list li b:hover { color: #fff;  transition: all 0.5s ease-in;  }
 
-
 .rf_topfield { margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
-
 .rf_qrcodescan { width: 30%; float: left; margin:0; padding:0 3rem 0 0; }
-.rf_qrcodescan img { max-width: 75px; border: solid 2px #F5F0EB; padding: 5px; cursor: pointer; filter: grayscale(0); transition: all 0.5s ease-in; }
+.rf_qrcodescan img { width: 100%; max-width: 75px; border: solid 2px #F5F0EB; padding: 5px; cursor: pointer; filter: grayscale(0); transition: all 0.5s ease-in; }
 .rf_qrcodescan img:hover { filter: grayscale(1);  transition: all 0.5s ease-out; }
-
 .rf_qrcodeOr { width:35px;  float: left; margin:0; padding:0; display: flex; justify-content: center; align-items: center; flex-direction: column;  }
 .rf_qrcodeOr span  { width:35px; height: 35px;  line-height: 35px; border-radius: 50%; margin: 0; padding: 0; border: 0; background-color: #afcdaf; color:#fff; text-align: center; font-weight: 500; font-size:16px;   }
 .rf_qrcodeOr:after, .rf_qrcodeOr:before { content: ''; width:2px; height:25px; background-color: #afcdaf;  line-height: 1; font-size: 0; margin: 0; padding: 0; border: 0; }
- 
-
 .rf_qrfield { width: calc(70% - 35px); float: left; margin:0; padding:0 0 0 3rem;   }
 .rf_qrfield .rf_input { margin-bottom: 1rem;   }
 .rf_qrfield .rf_button {  border-color:#F5F0EB;  }
-
-.qrcodemanual { width: 100%; float: left; margin:3rem 0 1rem 0; padding:0;  }
-.qrcodemanuallyHeading {  width: 100%; float: left; margin:0 0 1rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: normal;color: #191919; font-size: 18px; }
-.qrcodemanuallyError { display: none; width: 100%; float: left; margin:0; padding:1rem 0 0 0; text-align: center; font-weight: 500; color: #F30; font-size:16px;   }
-.qrcodemanuallyForm {  width: 100%; float: left; margin:0; padding:0; text-align: center; display: flex; justify-content: center; align-items: center; }
-.qrcodemanuallyInput {  width: 300px;  padding:1rem; margin: 0; border: 0; border: solid 2px #F5F0EB;  outline: none;  background:#fff;  border-radius: 0;  text-align: left; font-weight: 500;  color:#000;  font-size:18px;  box-shadow:none; box-sizing: border-box; }
-.qrcodemanuallyButton { width: 120px; display: inline-block;  margin: 0;  padding:1rem; box-sizing: border-box; text-align: center;  background:#AFCDAF;  font-weight: 700;  font-size: 18px;  color:#191919;  border: solid 2px #AFCDAF; transition: all 0.5s ease-out;  border-radius: 0;  text-decoration: none;   cursor: pointer; outline: none; text-transform: uppercase; }
-.qrcodemanuallyButton:hover { background: #191919;  color: #fff;   transition: all 0.5s ease-in; }
 
 
 
@@ -107,7 +93,18 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 
 
 
-@media only screen and (max-width:479px)
+@media only screen and (max-width:599px)
 {
+    /* ################### rf ################### */
+    .rf_head { font-size: 24px; }    
+    .rf_button { margin: 0 0.5rem; padding: 0.7rem 1rem; }
+ 
+    .rf_qrcodescan {  padding:0 1rem 0 0; }
+    .rf_qrcodescan img { max-width: 75px; border-width:1px; padding: 3px;   }
+    .rf_qrcodeOr { width:28px;   }
+    .rf_qrcodeOr span  { width:28px; height: 28px;  line-height: 28px; font-size:12px;   }
+    .rf_qrfield { width: calc(70% - 28px); padding:0 0 0 1rem;   }
+ 
+
 
 }
