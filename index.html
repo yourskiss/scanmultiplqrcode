@@ -179,7 +179,8 @@ function addqrcode()
         return false;
     }
   //  else if(getArrayFromSS.includes(qrmanual))
-    else if(getArrayFromSS.indexOf(qrmanual)  != -1)
+  //  else if(getArrayFromSS.indexOf(qrmanual)  != -1)
+    else if ($.inArray(qrmanual, getArrayFromSS) !== -1)
     {
         $("#qrValError").show().html('QR Code already added.');
         $("#qrValue").val('');
@@ -306,7 +307,8 @@ domReady(function () {
             {
                 const couponvalue = sdURL[1].split("=");
                // if(getValFromSS.includes(couponvalue[1]))
-                if(getValFromSS.indexOf(couponvalue[1])  != -1)
+              //  if(getValFromSS.indexOf(couponvalue[1])  != -1)
+                if ($.inArray(couponvalue[1], getValFromSS) !== -1)
                 {
                     alert("QR Code already added.");
                     showhideLoader('hide');
