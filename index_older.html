@@ -37,6 +37,7 @@
                 <!-- <li><span>aaaa</span> <b>&#935;</b></li> -->
             </ul>
             <span class="rf_info"><b id="qrcodecount">0</b> QR Code Scanned</span>
+            <span class="rf_error" id="errorlist"></span>
         </div>
         <div class="rf_field">
             <span class="rf_text">Notes:</span>
@@ -58,37 +59,23 @@
     <div class="scanqrcodecontainer" id="scanqrcodecontainer">
         <div class="qrreadersection">
             <div class="qrreaderclose" onclick="showhideQrcode('hide');">&#935;</div>
-            <video id="previewKamera" class="previewKamera"></video>
+            <div class="myqrreader" id="myqrreader"></div>
         </div>     
     </div>
     <!-- scanqrcodecontainer end -->
 
-   
-    <!-- submitPopup start -->
-    <div class="alertpopup" id="submitPopup">
+
+    <!-- alertpopup start -->
+    <div class="alertpopup" id="successmessage">
         <section>
-            <h2>Successfully Added <b id="successCount"></b> QR Code.</h2>
+            <h2>Successfully Scanned <b id="successCount"></b> QR Code -</h2>
             <p id="successList"></p>
             <h5>
-                <span class="alertclose" onclick="showhideSubmitMessage('hide');">Close</span>
+                <span class="alertclose" onclick="showhideAlert('hide');">Close</span>
             </h5>
         </section>     
     </div>
-    <!-- submitPopup end -->
-
-
-
-    <!-- scanMessagePopup start -->
-    <div class="alertpopup" id="scanMessagePopup">
-        <section>
-            <h3 id="scanQrCodeMsg"></h3>
-            <h5>
-                <span class="alertclose" onclick="qrcodescanmessage('hide','');">Close</span>
-            </h5>
-        </section>     
-    </div>
-    <!-- scanMessagePopup end -->
-    
+    <!-- alertpopup end -->
 
 
     <!-- loaderbar start -->
@@ -104,7 +91,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 <script>
 
 
@@ -168,7 +155,7 @@ function removeQrcode(itemToRemove)
 function deleteQrcode()
 {
     $("#qrValue, #comments").val('');
-    $("#qrValError, #errorcomment").hide().html('');
+    $("#qrValError, #errorlist, #errorcomment").hide().html('');
     sessionStorage.removeItem('scannedqrcode');
     showQrcode();
 }
@@ -177,7 +164,7 @@ function deleteQrcode()
 // ================== add qrcode by form ==================
 function addqrcode()
 {
-    $("#errorcomment").hide().html('');
+    $("#errorlist, #errorcomment").hide().html('');
     var getArrayFromSS = getQrcode();
     var qrmanual =  $("#qrValue").val();
     if(qrmanual == '')
@@ -214,7 +201,7 @@ function SubmitQrcode()
     var comments =  $("#comments").val();
     if(qrcodevalue == null || qrcodevalue == undefined || qrcodevalue == '')
     {
-        $("#qrValError").show().html('Please add  QR Code');
+        $("#errorlist").show().html('Please add  QR Code');
         return false;
     }
     else if(comments == '')
@@ -230,48 +217,27 @@ function SubmitQrcode()
     else
     {
         $("#qrValue, #comments").val('');
-        $("#qrValError, #errorcomment").hide().html('');
-        showhideSubmitMessage('show');
+        $("#qrValError, #errorlist, #errorcomment").hide().html('');
+        showhideAlert('show');
         sessionStorage.removeItem('scannedqrcode'); // remove session
         return true;
     }
 }
 
 
- 
-    
     
 
-// ================== qrcodescanmessage show hide ==================
-function qrcodescanmessage(showhide,message)
-{
-    $("#scanQrCodeMsg").html('');
-    if(showhide == "show")
-    {
-        $("#scanMessagePopup").fadeIn(300);
-        $("#scanQrCodeMsg").html(message);
-    }
-    else if(showhide == "hide")
-    {
-        $("#scanMessagePopup").fadeOut(300);
-         
-    }
-    else 
-    {
-        // notting
-    }
-}
- 
-// ================== showhideSubmitMessage show hide ==================
-function showhideSubmitMessage(val)
+
+// ================== showhideAlert show hide ==================
+function showhideAlert(val)
 {
     if(val == "show")
     {
-        $("#submitPopup").fadeIn(300);
+        $("#successmessage").fadeIn(300);
     }
     else if(val == "hide")
     {
-        $("#submitPopup").fadeOut(300);
+        $("#successmessage").fadeOut(300);
         location.reload(true); // page reload
     }
     else 
@@ -283,19 +249,14 @@ function showhideSubmitMessage(val)
 // ================== show-hide qrcode popup ==================
 function showhideQrcode(val)
 {
-    showhideLoader('show');
     $("#qrValError").hide().html('');
     if(val == "show")
     {
         $("#scanqrcodecontainer").fadeIn(300);
-        initScanner();
-        setTimeout(function(){showhideLoader('hide');},500); 
     }
     else if(val == "hide")
     {
         $("#scanqrcodecontainer").fadeOut(300);
-        stopScanner();
-        setTimeout(function(){showhideLoader('hide');},500); 
     }
     else 
     {
@@ -332,48 +293,52 @@ function showhideLoader(val)
         return false
     }
  
-        let selectedDeviceId = null;
-        const codeReader = new ZXing.BrowserMultiFormatReader();
-        function initScanner() {
-            codeReader.listVideoInputDevices()
-            .then(videoInputDevices => {
-                    codeReader.decodeOnceFromVideoDevice(selectedDeviceId, 'previewKamera')
-                        .then(result => {
-                            // console.log(result.text)
-                            showhideLoader('show');
-                            var getValFromSS = getQrcode();
-                            const sdURL = result.text.split("?");
-                            if(sdURL[0] === 'https://testclub.kerakoll.com/' || sdURL[0] === 'https://club.kerakoll.com/')
-                            {
-                                const couponvalue = sdURL[1].split("=");
 
-                                if ($.inArray(couponvalue[1], getValFromSS) !== -1)
-                                {
-                                    qrcodescanmessage("show","QR Code already added. Please try another QR Code.");
-                                }
-                                else 
-                                {
-                                    setQrcode(couponvalue[1]);
-                                    qrcodescanmessage("show","QR Code scan Successfully.");
-                                }
-                                showhideQrcode('hide');
-                            }
-                            else
-                            {
-                                qrcodescanmessage("show","QR Code origin is invalid. Please scan Kerakoll QR Code.");
-                                showhideQrcode('hide');
-                                showhideQrcode('show');
-                            }
-                            showhideLoader('hide');
-                        })
-                        .catch(err => console.log("videoInputDevices-",err));
-            })
-            .catch(err => console.log("codeReader-",err));
-        }
-        function stopScanner() 
-        {
-            if(codeReader){codeReader.reset() }
-        }
+function domReady(fn) {
+    if (document.readyState === "complete" || document.readyState === "interactive") 
+    {
+        setTimeout(fn, 1000);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}
+
+ 
+domReady(function () {
+    // If found you qr code
+    function onScanSuccess(decodeText, decodeResult) { 
+        showhideLoader('show');
+        var getValFromSS = getQrcode();
+        const sdURL = decodeText.split("?");
+          if(sdURL[0] === 'https://testclub.kerakoll.com/' || sdURL[0] === 'https://club.kerakoll.com/')
+            {
+                const couponvalue = sdURL[1].split("=");
+               // if(getValFromSS.includes(couponvalue[1]))
+              //  if(getValFromSS.indexOf(couponvalue[1])  != -1)
+                if ($.inArray(couponvalue[1], getValFromSS) !== -1)
+                {
+                    alert("QR Code already added.");
+                    showhideLoader('hide');
+                }
+                else 
+                {
+                    setQrcode(couponvalue[1]);
+                    alert("QR Code scan Successfully.");
+                    setTimeout(function(){ location.reload(true); },1000);
+                }
+            }
+            else
+            {
+                alert("Invalid origin");
+                setTimeout(function(){ location.reload(true); },2000);
+            }
+    }
+    let htmlscanner = new Html5QrcodeScanner("myqrreader",{ fps: 10, qrbos: 250 });
+    htmlscanner.render(onScanSuccess);
+});
+
+
+
 
  
     </script>

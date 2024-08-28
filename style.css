@@ -20,9 +20,10 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 
 /* ################### alertpopup ################### */
 .alertpopup { display: none; z-index:8; position: fixed; left: 0; top: 0;  height: 100%; width: 100%; float: left; margin: 0;padding: 0; background-color: #000;  }
-.alertpopup section { display: block; z-index:9;  position:absolute; left:50%; top:50%; transform: translate(-50%, -50%); width:94%; max-width: 350px; height: auto; float: left; background-color: #fff; overflow:visible; border-radius:10px; margin:0 auto; padding:2rem; box-sizing: border-box; }
-.alertpopup h2 {  width: 100%; float: left; margin:0; padding: 0 0 1rem 0;   color:#383C3D; font-size: 18px; font-weight: 500;line-height: 1;  } 
-.alertpopup p {  width:100%; float: left; margin:0 0; padding:0 0 1.5rem 0;  color:#383C3D; font-size: 16px; font-weight: 500;line-height: 1.3;  } 
+.alertpopup section { display: block; z-index:4;  position:absolute; left:50%; top:50%; transform: translate(-50%, -50%); width:94%; max-width: 350px; height: auto; float: left; background-color: #fff; overflow:visible; border-radius:10px; margin:0 auto; padding:2rem; box-sizing: border-box; }
+.alertpopup h2 { width: 100%; float: left; margin:0; padding: 0 0 1rem 0; text-align:center;  color:#383C3D; font-size: 18px; font-weight: 500;line-height: 1.2;  } 
+.alertpopup h3 { width: 100%; float: left; margin:0; padding: 0 0 1rem 0; text-align:center;  color:#383C3D; font-size: 16px; font-weight: 500;line-height: 1.2;  } 
+.alertpopup p {  width:100%; float: left; margin:0; padding:0 0 1.5rem 0; text-align:center; color:#383C3D; font-size: 16px; font-weight: 500;line-height: 1.3;  } 
 .alertpopup h5 {  width: 100%; float: left; margin:0; padding:0 0 0 0;  text-align: center; }
 .alertpopup .alertclose { display: inline-block; width: auto; margin: 0 1rem; padding:1rem 2rem; background:#afcdaf;  font-weight: normal; line-height: 1; font-size: 16px;  color:#000;  border:none; transition: all 0.5s ease-out;  border-radius:0;  cursor: pointer;  text-transform: none; }
 .alertpopup .alertclose:hover {  background:#383C3D;  color:#fff; transition: all 0.5s ease-in;  }
@@ -30,11 +31,11 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
  
 
 /* ################### qr code reader ################### */
-.scanqrcodecontainer  { z-index: 2; position: fixed; top: 0; left: 0; display: none; width: 100%; height: 100%; float: left; margin:0; padding:0; background: #000; }
+.scanqrcodecontainer  { z-index: 3; position: fixed; top: 0; left: 0; display: none; width: 100%; height: 100%; float: left; margin:0; padding:0; background: #000; }
 .qrreaderhead { position: relative; z-index: 9; width: 100%; float: left; margin:1rem 0 1rem 0; padding: 0; text-align: center;  text-transform: none; font-weight: normal;color: #000; font-size: 20px;  }
 .qrreaderclose { z-index: 4; position: absolute; right: -7px; top: -7px; color: #000;z-index: 3;border: solid 1px #AFCDAF;background: #AFCDAF;text-align: center;width: 27px;height: 27px;line-height: 27px; font-size: 16px;border-radius: 50%; cursor: pointer; }
 .qrreaderclose:hover { color: #fff; }
-.qrreadersection { z-index:3; position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%); width: 95%; max-width: 480px; max-height: 90%;  }
+.qrreadersection { z-index:3; position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%); width: 95%; max-width:350px; max-height: 90%;  }
 .myqrreader { background: #fff; padding: 1rem !important; border:0 !important; border-radius: 8px;}
 .myqrreader img[alt="Info icon"] { display: none;}
 .myqrreader img[alt="Camera based scan"] {width: 100px !important;height: 100px !important;}
@@ -42,7 +43,7 @@ body { background-color: #191919; margin:0;padding:0;box-sizing:border-box;line-
 .myqrreader button:hover {  background-color: #008000;}
 .myqrreader video {    width: 100% !important;    border: 1px solid #b2b2b2 !important;    border-radius: 0.25em;}
 #html5-qrcode-anchor-scan-type-change {  text-decoration: none !important;    color: #1d9bf0;}
-
+.previewKamera  { background: #fff; padding: 1rem; border:0 ; border-radius: 8px; width: 100%; height: 100%; display: block; margin: 0; outline: none;}
 
 /* ################### rf ################### */
 .rf_main { display:flex; justify-content: center; align-items: center; width: 100%;  float: left; clear: both; margin: 0;  padding: 2rem 0; }
